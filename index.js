@@ -100,8 +100,8 @@ Line.prototype._init = function() {
 
     var container = d3.select(selector)
         .append('div')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
+        .style('width', width + margin.left + margin.right + "px")
+        .style('height', height + margin.top + margin.bottom + "px")
 
     var canvas = container
         .append('canvas')
