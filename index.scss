@@ -4,6 +4,7 @@
 
 .line-plot.canvas {
     position: absolute;
+    z-index: 1000;
 }
 
 .line-plot.svg {
