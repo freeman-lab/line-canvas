@@ -108,7 +108,8 @@ Line.prototype._init = function() {
         .attr('class', 'line-plot canvas')
         .attr('width', width)
         .attr('height', height)
-        .style('padding', margin.top + 'px ' + margin.left + 'px')
+        .style('margin', margin.top + 'px ' + margin.left + 'px')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         .call(this.zoom)
         .node().getContext("2d")
 
@@ -120,6 +121,11 @@ Line.prototype._init = function() {
         .append('svg:g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
         .call(this.zoom)
+
+    svg.append('rect')
+        .attr('width', width)
+        .attr('height', height)
+        .attr('class', 'line-plot rect');
 
     var makeXAxis = function () {
         return d3.svg.axis()
@@ -224,7 +230,7 @@ Line.prototype._init = function() {
           _.forEach(series, function(s) {
             var t = s.d.length, d, i = 0;
             canvas.strokeStyle = s.c ? s.c : defaultSize;
-            canvas.lineWidth = defaultSize;
+            canvas.lineWidth = s.s ? s.s : defaultSize;
             canvas.lineJoin = 'round';
             canvas.beginPath();
             canvas.moveTo(self.x(s.d[0].x), self.y(s.d[0].y))
